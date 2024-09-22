@@ -26,6 +26,7 @@ import time
 import random
 
 
+
 SIZE = 40
 
 class Apple:
