@@ -8,13 +8,3 @@
     <li><strong>Audio</strong>: Background music and sound effects enhance the gameplay experience.</li>
 </ul>
 
-<h2>Game Preview</h2>
-<p>Watch the gameplay in action:</p>
-
-<h2>Game Preview</h2>
-<p>Watch the gameplay in action: <a href="python_snake-game\Preview.mp4" target="_blank">Click here to view the Snake and Apple Game preview!</a></p>
-
-
-
-    
-</video>
