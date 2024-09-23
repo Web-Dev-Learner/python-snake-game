@@ -4,6 +4,7 @@
 # build snake , apple
 # snake eats apple and score
 # game over restart logic
+# add boundary conditions
 # add bg music and image
 
 ''' -> blit -> one of the methods to 
@@ -25,6 +26,7 @@ import time
 
 import random
 
+# size - snakes block and apple
 
 SIZE = 40
 BACKGROUND_COLOR = (110, 110, 5)
@@ -67,12 +69,14 @@ class Snake:
         self.direction = 'down'
 
     def walk(self):
-        # update body
+        # update body 
         for i in range(self.length-1,0,-1):
             self.x[i] = self.x[i-1]
             self.y[i] = self.y[i-1]
 
         # update head
+        # Moves the snake's head in the current direction.
+
         if self.direction == 'left':
             self.x[0] -= SIZE
         if self.direction == 'right':
@@ -89,6 +93,7 @@ class Snake:
             self.parent_screen.blit(self.image, (self.x[i], self.y[i]))
 
         pygame.display.flip()
+# snake's length by add new blocks when it eats apple
 
     def increase_length(self):
         self.length += 1
@@ -98,7 +103,7 @@ class Snake:
 class Game:
     def __init__(self):
         pygame.init()
-        pygame.display.set_caption("Codebasics Snake And Apple Game")
+        pygame.display.set_caption("Snake And Apple Game")
 
         pygame.mixer.init()
         self.play_background_music()
@@ -109,10 +114,13 @@ class Game:
         self.apple = Apple(self.surface)
         self.apple.draw()
 
+# bg music 
+
     def play_background_music(self):
         pygame.mixer.music.load('resources/bg_music_1.mp3')
         pygame.mixer.music.play(-1, 0)
 
+# plays sound effects -  crash or eating an apple
     def play_sound(self, sound_name):
         if sound_name == "crash":
             sound = pygame.mixer.Sound("resources/crash.mp3")
@@ -120,6 +128,7 @@ class Game:
             sound = pygame.mixer.Sound("resources/ding.mp3")
 
         pygame.mixer.Sound.play(sound)
+
         # pygame.mixer.music.stop()
 
 
@@ -153,12 +162,14 @@ class Game:
                 self.apple.move()
 
         # snake colliding with itself
+
         for i in range(3, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
                 self.play_sound('crash')
                 raise "Collision Occurred"
 
         # snake colliding with the boundries of the window
+
         if not (0 <= self.snake.x[0] <= 1000 and 0 <= self.snake.y[0] <= 800):
             self.play_sound('crash')
             raise "Hit the boundry error"
@@ -217,6 +228,7 @@ class Game:
                 pause = True
                 self.reset()
 
+# adds delay 0.1 sec snakes speed
             time.sleep(.1)
 
 if __name__ == '__main__':
