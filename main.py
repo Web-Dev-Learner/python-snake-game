@@ -120,10 +120,13 @@ class Game:
             sound = pygame.mixer.Sound("resources/ding.mp3")
 
         pygame.mixer.Sound.play(sound)
+        # pygame.mixer.music.stop()
+
 
     def reset(self):
         self.snake = Snake(self.surface)
         self.apple = Apple(self.surface)
+
 
     def is_collision(self, x1, y1, x2, y2):
         if x1 >= x2 and x1 < x2 + SIZE:
@@ -143,16 +146,22 @@ class Game:
         pygame.display.flip()
 
         # snake eating apple scenario
-        if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
-            self.play_sound("ding")
-            self.snake.increase_length()
-            self.apple.move()
+        for i in range(self.snake.length):
+            if self.is_collision(self.snake.x[i], self.snake.y[i], self.apple.x, self.apple.y):
+                self.play_sound("ding")
+                self.snake.increase_length()
+                self.apple.move()
 
         # snake colliding with itself
         for i in range(3, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
                 self.play_sound('crash')
                 raise "Collision Occurred"
+
+        # snake colliding with the boundries of the window
+        if not (0 <= self.snake.x[0] <= 1000 and 0 <= self.snake.y[0] <= 800):
+            self.play_sound('crash')
+            raise "Hit the boundry error"
 
     def display_score(self):
         font = pygame.font.SysFont('arial',30)
@@ -208,7 +217,7 @@ class Game:
                 pause = True
                 self.reset()
 
-            time.sleep(.25)
+            time.sleep(.1)
 
 if __name__ == '__main__':
     game = Game()
