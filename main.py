@@ -229,7 +229,7 @@ class Game:
                 self.reset()
 
 # adds delay 0.1 sec snakes speed
-            time.sleep(.1)
+            time.sleep(.2)
 
 if __name__ == '__main__':
     game = Game()
