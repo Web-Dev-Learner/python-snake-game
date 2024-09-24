@@ -7,3 +7,5 @@
     <li><strong>Game Loop</strong>: Continuously updates the game state, including movement, rendering, and scoring.</li>
     <li><strong>Audio</strong>: Background music and sound effects enhance the gameplay experience.</li>
 </ul>
+
+[Watch the Snake and Apple Game Preview](https://github.com/Web-Dev-Learner/python-snake-game/raw/main/Preview.mp4)
