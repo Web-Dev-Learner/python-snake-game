@@ -228,9 +228,9 @@ class Game:
                 pause = True
                 self.reset()
 
-# adds delay 0.1 sec snakes speed
-            time.sleep(.2)
-
+# adds delay for  snakes speed
+            time.sleep(.1)
+ 
 if __name__ == '__main__':
     game = Game()
     game.run()
